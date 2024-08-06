@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <title>Article Preview Component</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #48556a;
+            --secondary-color: #6d7f97;
+            --background-color: #ecf2f8;
+            --white: #ffffff;
+        }
+
+        body {
+            background-color: var(--background-color);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 60px); /* Accounting for footer */
+        }
+
+        .article-card {
+            max-width: 730px;
+            width: 100%;
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-image {
+            height: 200px;
+            background-image: url('images/drawers.jpg?random=1');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .article-content {
+            padding: 30px;
+        }
+
+        .article-title {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .article-text {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .author-name {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+        }
+
+        .publish-date {
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+        }
+
+        .share-btn {
+            background-color: var(--background-color);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .share-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .share-btn i {
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        .share-btn:hover i {
+            color: var(--white);
+        }
+
+        .share-options {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-color);
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .share-options::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--primary-color) transparent transparent transparent;
+            transform: translateX(-50%);
+        }
+
+        .share-options.active {
+            display: flex;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .share-options span {
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
+            margin-right: 15px;
+        }
+
+        .share-options a {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 0 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .share-options a:hover {
+            transform: scale(1.2);
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 10px 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px) translateX(-50%); }
+            to { opacity: 1; transform: translateY(0) translateX(-50%); }
+        }
+
+        @media (min-width: 768px) {
+            .article-card {
+                display: flex;
+            }
+
+            .article-image {
+                width: 40%;
+                height: auto;
+            }
+
+            .article-content {
+                width: 60%;
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="article-card">
+            <div class="article-image"></div>
+            <div class="article-content">
+                <h2 class="article-title">Shift the overall look and feel by adding these wonderful touches to furniture in your home</h2>
+                <p class="article-text">Ever been in a room and felt like something was missing? Perhaps it felt slightly bare and uninviting. I've got some simple tips to help you make any room feel complete.</p>
+                <div class="author-info">
+                    <div class="author">
+                        <img src="images\avatar-michelle.jpg?random=2" alt="Michelle Appleton" class="author-image">
+                        <div>
+                            <p class="author-name">Michelle Appleton</p>
+                            <p class="publish-date">28 Jun 2020</p>
+                        </div>
+                    </div>
+                    <div class="position-relative">
+                        <button class="share-btn" id="shareBtn">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <div class="share-options" id="shareOptions">
+                            
+                            <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-square"></i></a>
+                            <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Share on Pinterest"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Article Preview Component. All rights reserved.</p>
+        <p>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://github.com/Hackerbot24">Hackerbot24</a>.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const shareBtn = document.getElementById('shareBtn');
+        const shareOptions = document.getElementById('shareOptions');
+
+        shareBtn.addEventListener('click', () => {
+            shareOptions.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!shareBtn.contains(event.target) && !shareOptions.contains(event.target)) {
+                shareOptions.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
